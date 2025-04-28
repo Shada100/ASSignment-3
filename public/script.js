@@ -56,11 +56,12 @@ function sendMessage() {
   addUserMessage(message);
   input.value = "";
 
-  fetch("http://localhost:3000/chat", {
+  fetch("http:https://assignment-3-8322.onrender.com/chat", {
     // Use explicit port
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message }),
+    credentials: "include", // Include cookies for session
   })
     .then((res) => res.json())
     .then((data) => {
