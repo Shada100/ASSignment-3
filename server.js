@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 10000;
 
 // Middleware
-//app.use(cors()); // This allows requests from all origins
+app.use(cors()); // This allows requests from all origins
 app.use(express.json());
 app.use(express.static("public"));
 app.use(
