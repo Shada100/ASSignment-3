@@ -61,7 +61,6 @@ function sendMessage() {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message }),
-    credentials: "include", // Include cookies for session
   })
     .then((res) => res.json())
     .then((data) => {
