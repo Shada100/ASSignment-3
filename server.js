@@ -1,11 +1,36 @@
 const express = require("express");
 const session = require("express-session");
 const axios = require("axios");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 10000;
 
 // Middleware
+const allowedOrigins = [
+  "https://assignment-3-8322.onrender.com", // Your frontend URL
+  "http://localhost:10000", // For local development
+];
 
+// CORS configuration
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g., mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allowed methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+    credentials: true, // If you need to send cookies or auth headers
+  })
+);
+
+// Handle preflight OPTIONS requests
+app.options("*", cors());
 app.use(express.json());
 app.use(express.static("public"));
 app.use(
