@@ -1,12 +1,11 @@
 const express = require("express");
-const cors = require("cors");
 const session = require("express-session");
 const axios = require("axios");
 const app = express();
 const port = process.env.PORT || 10000;
 
 // Middleware
-app.use(cors()); // This allows requests from all origins
+
 app.use(express.json());
 app.use(express.static("public"));
 app.use(
