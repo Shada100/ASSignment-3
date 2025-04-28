@@ -56,7 +56,7 @@ function sendMessage() {
   addUserMessage(message);
   input.value = "";
 
-  fetch("http:https://assignment-3-8322.onrender.com/chat", {
+  fetch("http://localhost:10000/chat", {
     // Use explicit port
     method: "POST",
     headers: { "Content-Type": "application/json" },
